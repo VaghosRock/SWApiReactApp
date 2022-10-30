@@ -1,6 +1,4 @@
-.row {
-    max-width: 18rem
-}
-.col {
+.card-group {
+    display: flex;
     
 }

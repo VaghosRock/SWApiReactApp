@@ -1,13 +1,14 @@
 import "./App.css";
 import { useState, useEffect } from "react";
-import Nombres from "./Components/Nombres";
-
+import Personajes from "./Components/Personajes";
+import Navbar from "./Components/Navbar";
+import Pagination from "./Components/Pagination";
 
 function App() {
   const urlInicial = "https://swapi.dev/api/people";
-  const [url, setUrl] = useState(urlInicial);
   const [datos, setDatos] = useState([]);
   const [personajes, setPersonajes] = useState([]);
+  const [planets, setPlanets] = useState([]);
   function fetchApi(url) {
     fetch(url)
       .then((res) => res.json())
@@ -17,18 +18,28 @@ function App() {
         console.log(data);
       })
       .catch((error) => {
-        throw error;
+        console.log(error);
       });
   }
+  
+  
   useEffect(() => {
-      fetchApi(url);
+    fetchApi(urlInicial);
   }, []);
 
+  function nextPag() {
+    fetchApi(datos.next);
+  }
+  function prevPag() {
+    fetchApi(datos.previous);
+  }
+  
   return (
     <>
-      <div className="App">Star Wars Cards</div>
-
-      <Nombres personajes={personajes} />
+      <Navbar />
+      <Pagination prev={datos.previous} next={datos.next} nextPag={nextPag} prevPag={prevPag} />
+      <Personajes personajes={personajes} planets={planets} />
+      <Pagination prev={datos.previous} next={datos.next} nextPag={nextPag} prevPag={prevPag} />
     </>
   );
 }
