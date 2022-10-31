@@ -36,3 +36,13 @@
     transform: rotate(360deg);
   }
 }
+
+body {
+  background-image: url("./Imagenes/fondo.png");
+}
+
+.card {
+  background-color: rgba(245, 245, 245, 0.4)
+}
+
+.start {background-color: #553e7e}

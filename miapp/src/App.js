@@ -9,6 +9,7 @@ function App() {
   const [datos, setDatos] = useState([]);
   const [personajes, setPersonajes] = useState([]);
   const [planets, setPlanets] = useState([]);
+  const [inicio, setInicio] = useState(true);
   function fetchApi(url) {
     fetch(url)
       .then((res) => res.json())
@@ -21,8 +22,7 @@ function App() {
         console.log(error);
       });
   }
-  
-  
+
   useEffect(() => {
     fetchApi(urlInicial);
   }, []);
@@ -33,13 +33,39 @@ function App() {
   function prevPag() {
     fetchApi(datos.previous);
   }
-  
+  function handleInicio() {
+    setInicio(false);
+  }
   return (
     <>
       <Navbar />
-      <Pagination prev={datos.previous} next={datos.next} nextPag={nextPag} prevPag={prevPag} />
-      <Personajes personajes={personajes} planets={planets} />
-      <Pagination prev={datos.previous} next={datos.next} nextPag={nextPag} prevPag={prevPag} />
+      
+      {!inicio ? (
+        <div>
+          <Pagination
+            prev={datos.previous}
+            next={datos.next}
+            nextPag={nextPag}
+            prevPag={prevPag}
+          />
+
+          <Personajes personajes={personajes} planets={planets} />
+
+          <Pagination
+            prev={datos.previous}
+            next={datos.next}
+            nextPag={nextPag}
+            prevPag={prevPag}
+          />
+        </div>
+      ) : (
+        <button
+          className="d-grid gap-2 col-6 mx-auto btn start mt-5"
+          onClick={handleInicio}
+        >
+          Start
+        </button>
+      )}
     </>
   );
 }

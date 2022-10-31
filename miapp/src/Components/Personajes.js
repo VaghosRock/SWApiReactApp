@@ -1,12 +1,11 @@
 import React from "react";
-import "../Stylesheet/Nombres.css";
 
 function Personajes({ personajes, planets }) {
   return (
     <div className="row row-cols-2 row-cols-md-2 g-4 mt-2 d-flex">
-      {personajes.map((personaje) => (
-        <div className="col  ">
-          <div className="card text-bg-dark">
+      {personajes.map((personaje, index) => (
+        <div className="col" key={index}>
+          <div className="card  ">
             <h1 className="card-title">{personaje.name}</h1>
             <hr />
             <h5 className="card-text">Homeworld: {personaje.homeworld}</h5>
