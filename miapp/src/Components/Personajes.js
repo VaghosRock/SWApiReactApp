@@ -1,6 +1,8 @@
 import React from "react";
+import Planeta from "./Planeta";
 
 function Personajes({ personajes, planets }) {
+  
   return (
     <div className="row row-cols-2 row-cols-md-2 g-4 mt-2 d-flex">
       {personajes.map((personaje, index) => (
@@ -8,7 +10,7 @@ function Personajes({ personajes, planets }) {
           <div className="card  ">
             <h1 className="card-title">{personaje.name}</h1>
             <hr />
-            <h5 className="card-text">Homeworld: {personaje.homeworld}</h5>
+            <Planeta url={personaje.homeworld} />
             <p className="card-text">Gender: {personaje.gender}</p>
           </div>
         </div>
